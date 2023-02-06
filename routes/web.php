@@ -56,6 +56,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/product/inactive/{id}', [ProductController::class, 'inactive'])->name('product.inactive');
     Route::get('/product/trending/{id}', [ProductController::class, 'trending'])->name('product.trending');
     Route::get('/product/notTrending/{id}', [ProductController::class, 'notTrending'])->name('product.notTrending');
+    Route::post('/product-color/{prod_color_id}', [ProductController::class, 'colorStockUpdate']);
+    Route::get('/product-color/{prod_color_id}/delete', [ProductController::class, 'deleteColor']);
 
 
     // Color

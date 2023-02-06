@@ -9,6 +9,8 @@ use App\Models\Admin\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Admin\Color;
+use App\Models\Admin\ProductColor;
+use PHPUnit\Util\Cloner;
 
 class ProductController extends Controller
 {
@@ -112,9 +114,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        $product_color = $product->productColor->pluck('color_id')->toArray();
+        $colors = Color::whereNotIn('id', $product_color)->get();
+        return view('admin.product.edit', compact('product', 'categories', 'product_color', 'colors'));
     }
 
     /**
@@ -124,9 +129,58 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $images = [];
+        if ($request->hasFile('images')) {
+            foreach ($request['images'] as $image) {
+                $originalName = $image->getClientOriginalName();
+                $fileName = date('Y-m-d') . time() . $originalName;
+                $image_path =  $image->storeAs('products', $fileName, 'public');
+
+                array_push($images, $image_path);
+            }
+        }
+        $requestData = [
+
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'slug' => Str::slug($request->slug),
+            'description' => $request->description,
+            'code' => $request->code,
+            'shortDefination' => $request->shortDefination,
+            'test' => $request->test,
+            'result' => $request->result,
+            'howToUse' => $request->howToUse,
+            'pack' => $request->pack,
+            'ingredient' => $request->ingredient,
+            'weight' => $request->weight,
+            'pao' => $request->pao,
+            'origin' => $request->origin,
+            'meta_title' => $request->meta_title,
+            'meta_keyword' => $request->meta_keyword,
+            'meta_description' => $request->meta_description,
+            'originalPrice' => $request->originalPrice,
+            'sellingPrice' => $request->sellingPrice,
+            'costing' => $request->costing,
+            'status' => $request->status == true ? '1' : '0',
+            'trending' => $request->trending == true ? '1' : '0',
+            'images' => $images,
+        ];
+        // $category->product()->create($requestData);
+        $product->update($requestData);
+
+        if ($request->colors) {
+            foreach ($request->colors as $key => $color) {
+                $product->productColor()->create([
+                    'product_id' => $product->id,
+                    'color_id' => $color,
+                    'stock' => $request->colorStock[$key] ?? 0
+                ]);
+            }
+        }
+
+        return redirect()->route('product.index')->with('message', 'Product Updated!');
     }
 
     /**
@@ -172,5 +226,20 @@ class ProductController extends Controller
         $product->trending = 0;
         $product->update();
         return back();
+    }
+
+    public function colorStockUpdate(Request $request, $prod_color_id)
+    {
+        $productColorData = Product::findOrFail($request->product_id)->productColor()->where('id', $prod_color_id)->first();
+        $productColorData->update([
+            'stock' => $request->stk
+        ]);
+        return response()->json(['message' => 'Color Stock Updated']);
+    }
+    public function deleteColor($prod_color_id)
+    {
+        $prod_color = ProductColor::findOrFail($prod_color_id);
+        $prod_color->delete();
+        return response()->json(['message' => 'Color Deleted']);
     }
 }
