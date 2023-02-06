@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,13 +22,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 
 Auth::routes();
+Route::get('/', [FrontendController::class, 'index'])->name('public.index');
+Route::get('/collections', [FrontendController::class, 'categories'])->name('public.categories');
+Route::get('/collections/{category_slug}', [FrontendController::class, 'products'])->name('public.products');
+Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::class, 'product'])->name('public.product');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'categories']);
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     // dashboard
@@ -62,4 +69,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     // Color
     Route::resource('/color', ColorController::class);
+
+
+    // Color
+    Route::resource('/slider', SliderController::class);
+    Route::get('/slider/inactive/{id}', [SliderController::class, 'inactive'])->name('slider.inactive');
+    Route::get('/slider/trending/{id}', [SliderController::class, 'trending'])->name('slider.trending');
 });

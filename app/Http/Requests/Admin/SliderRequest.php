@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class SliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,15 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
+        $imageValidationRules = 'image|mimes:jpg,png,jpeg,gif,jpeg';
 
+        if ($this->isMethod('post')) {
+            $imageValidationRules = 'required|' . $imageValidationRules;
+        }
         return [
-            'name' => 'required|min:2|max:100',
-            'slug' => 'required|min:2|max:100',
+            'title' => 'required|min:2|max:100|unique:sliders,title,' . $this->id,
             'description' => 'required|min:2|max:900',
-            'meta_title' => 'required|min:2|max:100',
-            'meta_keyword' => 'required|min:2|max:100',
-            'meta_description' => 'required|min:2|max:100',
+            'image' => $imageValidationRules,
         ];
     }
 }

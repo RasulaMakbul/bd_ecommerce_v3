@@ -32,11 +32,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-                    Reports
+                <a class="nav-link" href="{{route('slider.index')}}">
+                    <i class="fa-solid fa-images"></i>
+                    {{__(' Sliders')}}
                 </a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="layers" class="align-text-bottom"></span>
