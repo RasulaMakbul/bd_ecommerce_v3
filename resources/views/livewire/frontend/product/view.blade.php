@@ -1,6 +1,8 @@
 <div>
     <div class="py-3 py-md-5 bg-light">
         <div class="container">
+            <div>
+            </div>
             <div class="row">
                 <div class="col-md-5 mt-3">
                     <div class="bg-white border">
@@ -64,8 +66,13 @@
                             </div>
                         </div>
                         <div class="mt-2">
-                            <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> {{(__'Add To Cart')}}</a>
-                            <button type="button" wire:click="addToWishList" class="btn btn1"> <i class="fa fa-heart"></i> {{__('Add To Wishlist')}} </button>
+                            <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> {{__('Add To Cart')}}</a>
+                            <button type="button" wire:click="addToWishList({{$product->id}})" class="btn btn1" title=" {{__('Add To Wishlist')}} ">
+                                <span wire:loading.remove>
+                                    <i class="fa fa-heart"></i>
+                                </span>
+                                <span wire:loading wire:target="addToWishList">{{__('Adding...')}}</span>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,9 @@ Route::get('/collections', [FrontendController::class, 'categories'])->name('pub
 Route::get('/collections/{category_slug}', [FrontendController::class, 'products'])->name('public.products');
 Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::class, 'product'])->name('public.product');
 
-
+Route::middleware('auth')->group(function () {
+    Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('public.wishlist');
+});
 
 
 
