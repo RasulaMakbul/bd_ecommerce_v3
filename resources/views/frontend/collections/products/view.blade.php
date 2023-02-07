@@ -15,34 +15,11 @@
 @section('content')
 
 <div>
-    <livewire:frontend.product.view :product="$product" :category="$category" />
+    <livewire:frontend.product.view :category="$category" :product="$product" />
 </div>
 
 
-@push('scripts')
-<script>
-    $(function() {
 
-        $("#exzoom").exzoom({
-
-            // thumbnail nav options
-            "navWidth": 70,
-            "navHeight": 70,
-            "navItemNum": 15,
-            // "navItemMargin": 2,
-            "navBorder": 1,
-
-            // autoplay
-            "autoPlay": false,
-
-            // autoplay interval in milliseconds
-            "autoPlayTimeout": 2000
-
-        });
-
-    });
-</script>
-@endpush
 
 
 @endsection

@@ -17,10 +17,10 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="stylesheet" href="{{asset('assets/css/jquery.exzoom.css')}}">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/frontend.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/jquery.exzoom.css')}}">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -40,10 +40,11 @@
     <script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.exzoom.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/js/scripts.js')}}"></script>
 
-    @livewireScripts
     @yield('script')
     @stack('scripts')
+    @livewireScripts
 
 </body>
 

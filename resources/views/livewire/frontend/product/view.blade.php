@@ -4,24 +4,22 @@
             <div class="row">
                 <div class="col-md-5 mt-3">
                     <div class="bg-white border">
-                        <div class="caaroselTest">
-                            <div class="exzoom" id="exzoom">
-                                <div class="exzoom_img_box">
-                                    <ul class='exzoom_img_ul'>
-                                        @foreach($product->images as $image)
-                                        <li>
-                                            <img src="{{ asset('/storage/' . $image) }}" alt="multiple image" class=" border border-blue-600">
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="exzoom_nav"></div>
-                                <p class="exzoom_btn">
-                                    <a href="javascript:void(0);" class="exzoom_prev_btn">
-                                        < </a>
-                                            <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
-                                </p>
+                        <div class="exzoom" id="exzoom">
+                            <div class="exzoom_img_box">
+                                <ul class='exzoom_img_ul'>
+                                    @foreach($product->images as $image)
+                                    <li>
+                                        <img src="{{ asset('/storage/' . $image) }}" alt="multiple image" class=" border border-blue-600">
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
+                            <div class="exzoom_nav"></div>
+                            <p class="exzoom_btn">
+                                <a href="javascript:void(0);" class="exzoom_prev_btn">
+                                    < </a>
+                                        <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -31,7 +29,6 @@
                         <h4 class="product-name">
                             {{$product->name}}
                         </h4>
-                        <label class="stock bg-success">{{__('In Stock')}}</label>
                         <hr>
                         <p class="product-path">
                             Home / {{$product->category->name}} / {{$product->name}}
@@ -41,11 +38,23 @@
                             <span class="original-price">{{$product->originalPrice}}</span>
                         </div>
                         <div>
-                            @if($product->productColor)
-                            @foreach($product->productColor as $colorItem)
-                            <input type="radio" name="colorSelection" value="{{$colorItem->id}}">{{$colorItem->color->name}}
-                            @endforeach
-                            @endif
+                            <div class="row">
+                                @if($product->productColor)
+                                @foreach($product->productColor as $colorItem)
+                                <div class="col-md-2">
+
+                                    <label class="colorSelectionLabel" style="background-color: {{ $colorItem->color->code }};" wire:click="colorSelected({{$colorItem->id}})"></label>
+                                </div>
+                                @endforeach
+                                @endif
+                                <div class="">
+                                    @if($this->productColorSelectedStock == 'outOfStock')
+                                    <label class="btn-sm py-1 mt-2 text-white label-stock bg-danger availibility">{{__('Out Of Stock')}}</label>
+                                    @elseif($this->productColorSelectedStock >0)
+                                    <label class="btn-sm py-1 mt-2 text-white label-stock bg-success availibility">{{__('In Stock')}}</label>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         <div class="mt-2">
                             <div class="input-group">
@@ -55,8 +64,8 @@
                             </div>
                         </div>
                         <div class="mt-2">
-                            <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
-                            <a href="" class="btn btn1"> <i class="fa fa-heart"></i> Add To Wishlist </a>
+                            <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> {{(__'Add To Cart')}}</a>
+                            <button type="button" wire:click="addToWishList" class="btn btn1"> <i class="fa fa-heart"></i> {{__('Add To Wishlist')}} </button>
                         </div>
                     </div>
                 </div>
@@ -77,3 +86,9 @@
     </div>
 
 </div>
+
+@push('scripts')
+<script>
+
+</script>
+@endpush

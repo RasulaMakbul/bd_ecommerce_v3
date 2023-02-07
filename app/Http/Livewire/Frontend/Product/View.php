@@ -6,18 +6,30 @@ use Livewire\Component;
 
 class View extends Component
 {
-    public $product, $category;
-    public function mount($product, $category)
+    public $category, $product, $productColorSelectedStock;
+
+    public function colorSelected($productColorId)
     {
-        $this->product = $product;
+        // dd($productColorId);
+        $productColor = $this->product->productColor()->where('id', $productColorId)->first();
+        $this->productColorSelectedStock = $productColor->stock;
+        // dd($productColor->stock);
+        if ($this->productColorSelectedStock == 0) {
+            $this->productColorSelectedStock = 'outOfStock';
+        }
+    }
+
+    public function mount($category, $product)
+    {
         $this->category = $category;
+        $this->product = $product;
     }
     public function render()
     {
         return view('livewire.frontend.product.view', [
 
-            'product' => $this->product,
             'category' => $this->category,
+            'product' => $this->product
         ]);
     }
 }

@@ -33,6 +33,10 @@ Route::get('/collections', [FrontendController::class, 'categories'])->name('pub
 Route::get('/collections/{category_slug}', [FrontendController::class, 'products'])->name('public.products');
 Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::class, 'product'])->name('public.product');
 
+
+
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'categories']);
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 

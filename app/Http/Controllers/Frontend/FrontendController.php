@@ -29,7 +29,7 @@ class FrontendController extends Controller
             $products = $category->product()->get();
             return view('frontend.collections.products.index', compact('category', 'products'));
         } else {
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Not Available!');
         }
     }
     public function product(string $category_slug, string $product_slug)
@@ -41,10 +41,10 @@ class FrontendController extends Controller
             if ($product) {
                 return view('frontend.collections.products.view', compact('product', 'category'));
             } else {
-                return redirect()->back();
+                return redirect()->back()->with('message', 'Not Available!');
             }
         } else {
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Not Available!');
         }
     }
 }
