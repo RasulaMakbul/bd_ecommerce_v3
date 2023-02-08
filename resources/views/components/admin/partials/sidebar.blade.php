@@ -37,6 +37,12 @@
                     {{__(' Sliders')}}
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('order.index')}}">
+                    <i class="fa-regular fa-folder"></i>
+                    {{__(' Orders')}}
+                </a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="#">

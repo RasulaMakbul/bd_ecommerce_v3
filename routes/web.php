@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ColorController;
@@ -87,8 +88,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('/color', ColorController::class);
 
 
-    // Color
+    // Slider
     Route::resource('/slider', SliderController::class);
+    Route::get('/slider/inactive/{id}', [SliderController::class, 'inactive'])->name('slider.inactive');
+    Route::get('/slider/trending/{id}', [SliderController::class, 'trending'])->name('slider.trending');
+
+
+    // Order
+    Route::resource('/order', AdminOrderController::class);
     Route::get('/slider/inactive/{id}', [SliderController::class, 'inactive'])->name('slider.inactive');
     Route::get('/slider/trending/{id}', [SliderController::class, 'trending'])->name('slider.trending');
 });
