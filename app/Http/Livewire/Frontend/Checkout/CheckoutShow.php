@@ -41,6 +41,7 @@ class CheckoutShow extends Component
             'payment_id' => $this->payment_id
         ]);
         foreach ($this->carts as $cartItem) {
+            // dd($cartItem);
             $orderItems = OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $cartItem->product_id,
@@ -48,6 +49,9 @@ class CheckoutShow extends Component
                 'quantity' => $cartItem->quantity,
                 'price' => $cartItem->product->sellingPrice
             ]);
+            if ($cartItem->product_color_id != NULL) {
+                $cartItem->productColor()->where('id', $cartItem->product_color_id)->decrement('stock', $cartItem->quantity);
+            }
         }
         return $order;
     }
@@ -57,7 +61,7 @@ class CheckoutShow extends Component
         $this->payment_mode = 'Cash On Delivery';
         $codOrder = $this->placeOrder();
         if ($codOrder) {
-
+            Cart::where('user_id', auth()->user()->id)->delete();
             $this->dispatchBrowserEvent('message', [
                 'text' => 'Order successfull',
                 'type' => 'success',
@@ -76,6 +80,7 @@ class CheckoutShow extends Component
 
     public function totalProductAmount()
     {
+        $this->totalPriceAmount = 0;
         $this->carts = Cart::where('user_id', auth()->user()->id)->get();
         foreach ($this->carts as $cartItem) {
             $this->totalPriceAmount += $cartItem->product->sellingPrice * $cartItem->quantity;
