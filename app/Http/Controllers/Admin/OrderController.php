@@ -99,4 +99,17 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function OrderStatusupdate(int $orderId, Request $request)
+    {
+        $order = Order::where('id', $orderId)->first();
+        if ($order) {
+            $order->update([
+                'status_message' => $request->order_status
+            ]);
+            return redirect('admin/order/', $orderId)->with('message', 'Order Status Updated');
+        } else {
+            return redirect('admin/order/', $orderId)->with('message', 'Order not Found');
+        }
+    }
 }

@@ -84,6 +84,37 @@
                         </div>
 
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Order Process(Order Status Update)</h4>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <form action="{{route('order.statusUpdate',$order->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <label>Update Order Status</label>
+                                        <div class="input-group">
+                                            <select name="order_status" class="form-select">
+                                                <option value="">Select Status</option>
+                                                <option value="in progress">In Progress</option>
+                                                <option value="completed">Completed</option>
+                                                <option value="pending">Pending</option>
+                                                <option value="cancelled">Cancelled</option>
+                                                <option value="out-for-delevery">Out for Delivery</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-secondary text-light">Update</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="col-md-7">
+                                    <br>
+                                    <h4 class="mt-3">Current Order Status: <span class="text-uppercase text-success">{{$order->status_message}}</span></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

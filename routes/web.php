@@ -96,6 +96,5 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     // Order
     Route::resource('/order', AdminOrderController::class);
-    Route::get('/slider/inactive/{id}', [SliderController::class, 'inactive'])->name('slider.inactive');
-    Route::get('/slider/trending/{id}', [SliderController::class, 'trending'])->name('slider.trending');
+    Route::put('/order/statusUpdate/{id}', [AdminOrderController::class, 'OrderStatusupdate'])->name('order.statusUpdate');
 });
