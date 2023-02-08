@@ -9,6 +9,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('public.wishlist');
     Route::get('cart', [CartController::class, 'index'])->name('public.cart');
     Route::get('checkout', [CheckoutController::class, 'index'])->name('public.checkout');
+
+    Route::get('/order', [OrderController::class, 'index'])->name('public.orderList');
+    Route::get('/order/{orderId}', [OrderController::class, 'show'])->name('public.show');
 });
 Route::get('thank-you', [FrontendController::class, 'thankYou']);
 
