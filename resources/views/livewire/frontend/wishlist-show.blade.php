@@ -26,23 +26,13 @@
                                 <div class="col-md-6 my-auto">
                                     <a href="{{route('public.product',[$item->product->category->slug,$item->product->slug])}}">
                                         <label class="product-name">
-                                            <div class="exzoom" id="exzoom" style="width: 50px; height: 50px">
-                                                <div class="exzoom_img_box">
-                                                    <ul class='exzoom_img_ul'>
-                                                        @foreach($item->product->images as $image)
-                                                        <li>
-                                                            <img src="{{ asset('/storage/' . $image) }}" alt="multiple image" class=" border border-blue-600" alt='{{$item->product->name}}'>
-                                                        </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                            <img src="{{ asset('/storage/' . $item->product->images[0]) }}" style="max-width: 60px; max-height: 60px;" alt="image" class=" border border-blue-600" alt='{{$item->product->name}}'>
                                             {{$item->product->name}}
                                         </label>
                                     </a>
                                 </div>
                                 <div class="col-md-2 my-auto">
-                                    <label class="price"><i class="fa-solid fa-bangladeshi-taka-sign"></i>{{$item->product->sellingPrice}}</label>
+                                    <label class="price">&#2547 {{$item->product->sellingPrice}}</label>
                                 </div>
 
                                 <div class="col-md-2 col-5 my-auto">

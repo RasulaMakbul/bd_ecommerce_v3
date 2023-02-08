@@ -60,15 +60,19 @@
                         </div>
                         <div class="mt-2">
                             <div class="input-group">
-                                <span class="btn btn1"><i class="fa fa-minus"></i></span>
-                                <input type="text" value="1" class="input-quantity" />
-                                <span class="btn btn1"><i class="fa fa-plus"></i></span>
+                                <span class="btn btn1" wire:click="decrementStock"><i class="fa fa-minus"></i></span>
+                                <input type="text" wire:model="stockCount" value="{{$this->stockCount}}" readonly class="input-quantity" />
+                                <span class="btn btn1" wire:click="incrementStock"><i class="fa fa-plus"></i></span>
                             </div>
                         </div>
                         <div class="mt-2">
-                            <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> {{__('Add To Cart')}}</a>
-                            <button type="button" wire:click="addToWishList({{$product->id}})" class="btn btn1" title=" {{__('Add To Wishlist')}} ">
-                                <span wire:loading.remove>
+                            <button type="button" wire:click="addToCart({{$product->id}})" class="btn btn1 rounded" title="{{__('Add To Cart')}}">
+                                <i class="fa fa-shopping-cart"></i>
+                            </button>
+
+
+                            <button type="button" wire:click="addToWishList({{$product->id}})" class="btn btn1 rounded" title=" {{__('Add To Wishlist')}} ">
+                                <span wire:loading.remove wire:target="addToWishList">
                                     <i class="fa fa-heart"></i>
                                 </span>
                                 <span wire:loading wire:target="addToWishList">{{__('Adding...')}}</span>
