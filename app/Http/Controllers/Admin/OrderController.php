@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon as SupportCarbon;
 
 class OrderController extends Controller
@@ -14,10 +15,22 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $orders = Order::orderBy('id', 'DESC')->paginate(15);
+        // $orders = Order::orderBy('id', 'DESC')->paginate(15);
+        $todayDate = Carbon::now()->format('Y-m-d');
+
+        $orders = Order::when($request->date != null, function ($q) use ($request) {
+            $q->whereDate('created_at', $request->date)->paginate(10);
+        }, function ($q) use ($todayDate) {
+            $q->whereDate('created_at', $todayDate);
+        })
+            ->when($request->status != null, function ($q) use ($request) {
+                $q->where('status_message', $request->status)->paginate(10);
+            })
+            ->whereDate('created_at', $todayDate)->paginate(10);
+
         return view('admin.order.index', compact('orders'));
     }
 

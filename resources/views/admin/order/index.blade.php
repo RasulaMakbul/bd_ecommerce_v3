@@ -10,6 +10,30 @@
                         <div class="shadow bg-light p-3">
                             <h4 class="mb-4">My Order</h4>
                             <hr>
+                            <form action="" method="GET">
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label>Filter by Date</label>
+                                        <input type="date" name="date" value="{{date('Y-m-d')}}" class="form-control">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label>Filter by Status</label>
+                                        <select name="status" class="form-select">
+                                            <option value="">Select Status</option>
+                                            <option value="in progress">In Progress</option>
+                                            <option value="completed">Completed</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="cancelled">Cancelled</option>
+                                            <option value="out-for-delevery">Out for Delivery</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
                                     <thead>
