@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-1 my-auto">
-                                    <label class="price">&#2547</i>{{$item->product->sellingPrice * $item->quantity}} </label>
+                                    <label class="price">&#2547 {{$item->product->sellingPrice * $item->quantity}} </label>
                                     @php
                                     $totalPrice+=$item->product->sellingPrice * $item->quantity
                                     @endphp
@@ -90,7 +90,7 @@
                             <span class="float-end">&#2547 {{$totalPrice}}</span>
                         </h4>
                         <hr>
-                        <a href="" class=" btn btn-warning float-end w-100">{{__('Check out')}}</a>
+                        <a href="{{route('public.checkout')}}" class=" btn btn-warning float-end w-100">{{__('Check out')}}</a>
                     </div>
                 </div>
             </div>

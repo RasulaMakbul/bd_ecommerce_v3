@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\HomeController;
@@ -38,7 +39,9 @@ Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::c
 Route::middleware('auth')->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('public.wishlist');
     Route::get('cart', [CartController::class, 'index'])->name('public.cart');
+    Route::get('checkout', [CheckoutController::class, 'index'])->name('public.checkout');
 });
+Route::get('thank-you', [FrontendController::class, 'thankYou']);
 
 
 

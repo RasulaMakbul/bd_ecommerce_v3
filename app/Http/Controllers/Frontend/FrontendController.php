@@ -47,4 +47,8 @@ class FrontendController extends Controller
             return redirect()->back()->with('message', 'Not Available!');
         }
     }
+    public function thankYou()
+    {
+        return view('frontend.thankyou');
+    }
 }
