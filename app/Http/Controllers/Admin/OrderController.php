@@ -18,18 +18,19 @@ class OrderController extends Controller
     public function index(Request $request)
     {
 
-        // $orders = Order::orderBy('id', 'DESC')->paginate(15);
-        $todayDate = Carbon::now()->format('Y-m-d');
+        $orders = Order::orderBy('id', 'DESC')->paginate(15);
+        // $todayDate = Carbon::now()->format('Y-m-d');
 
-        $orders = Order::when($request->date != null, function ($q) use ($request) {
-            $q->whereDate('created_at', $request->date)->paginate(10);
-        }, function ($q) use ($todayDate) {
-            $q->whereDate('created_at', $todayDate);
-        })
-            ->when($request->status != null, function ($q) use ($request) {
-                $q->where('status_message', $request->status)->paginate(10);
-            })
-            ->whereDate('created_at', $todayDate)->paginate(10);
+        // $orders = Order::when($request->date != null, function ($q) use ($request) {
+        //     $q->whereDate('created_at', $request->date)->paginate(10);
+        // }, function ($q) use ($todayDate) {
+        //     $q->whereDate('created_at', $todayDate);
+        // })
+        //     ->when($request->status != null, function ($q) use ($request) {
+        //         $q->where('status_message', $request->status)->paginate(10);
+        //     })
+        //     ->whereDate('created_at', $todayDate)->paginate(10);
+
 
         return view('admin.order.index', compact('orders'));
     }
@@ -107,9 +108,9 @@ class OrderController extends Controller
             $order->update([
                 'status_message' => $request->order_status
             ]);
-            return redirect('admin/order/', $orderId)->with('message', 'Order Status Updated');
+            return redirect('admin/order/' . $orderId)->with('message', 'Order Status Updated');
         } else {
-            return redirect('admin/order/', $orderId)->with('message', 'Order not Found');
+            return redirect('admin/order/' . $orderId)->with('message', 'Order not Found');
         }
     }
 }

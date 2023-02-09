@@ -10,11 +10,11 @@
                         <div class="shadow bg-light p-3">
                             <h4 class="mb-4">My Order</h4>
                             <hr>
-                            <form action="" method="GET">
+                            <!-- <form action="" method="GET">
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
                                         <label>Filter by Date</label>
-                                        <input type="date" name="date" value="{{date('Y-m-d')}}" class="form-control">
+                                        <input type="date" name="date" id="date" value="{{date('Y-m-d')}}" class="form-control">
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>Filter by Status</label>
@@ -32,10 +32,10 @@
                                         <button type="submit" class="btn btn-primary">Filter</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
                             <hr>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped" id="orderTable">
                                     <thead>
                                         <tr>
                                             <th>sl</th>
@@ -77,4 +77,9 @@
             </div>
         </div>
     </div>
+    @push('js')
+    <script>
+        //
+    </script>
+    @endpush
 </x-admin.master>
