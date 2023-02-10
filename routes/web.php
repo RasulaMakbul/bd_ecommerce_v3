@@ -97,4 +97,6 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     // Order
     Route::resource('/order', AdminOrderController::class);
     Route::put('/order/statusUpdate/{id}', [AdminOrderController::class, 'OrderStatusupdate'])->name('order.statusUpdate');
+    Route::get('/order/invoice/{id}', [AdminOrderController::class, 'OrderInvoice'])->name('order.invoice');
+    Route::get('order/invoice/generate/{id}', [AdminOrderController::class, 'OrderInvoiceGenerate'])->name('order.invoice.generate');
 });

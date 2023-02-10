@@ -1,7 +1,21 @@
 <x-admin.master>
     <x-slot:title>
-        {{__('Orders')}}
+        {{__('Order')}}
     </x-slot:title>
+    <div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2">{{('Order')}}</h2>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="{{route('order.invoice.generate',$order->id)}}" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-file-pdf"></i>{{__(' Download Invoice')}}</a>
+                    <a href="{{route('order.invoice',$order->id)}}" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"></i>{{__(' Invoice')}}</a>
+                </div>
+                <a href="{{route('order.index')}}" class="btn btn-sm btn-outline-secondary mx-2"><i class="fa-solid fa-list"></i>{{__('Orders')}}</a>
+            </div>
+        </div>
+
+
+    </div>
     <div class="py-3 py-md-3">
         <div class="container">
             <div class="row">
@@ -9,7 +23,6 @@
                     <div class="shadow bg-light p-3">
                         <h4>
                             <i class="fa fa-shopping-cart"></i> My order Details
-                            <a href="{{route('order.index')}}" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-rotate-left"></i></a>
                         </h4>
                         <hr>
                         <div class="row">
