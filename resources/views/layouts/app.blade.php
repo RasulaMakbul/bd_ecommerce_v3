@@ -26,6 +26,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/frontend.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -37,7 +39,7 @@
     <div id="app">
 
         @include('layouts.inc.navbar')
-        <main>
+        <main class="mainLayout">
             @yield('content')
         </main>
     </div>
@@ -46,6 +48,7 @@
     <script src="{{asset('assets/js/jquery.exzoom.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/js/scripts.js')}}"></script>
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script>
         window.addEventListener('message', event => {

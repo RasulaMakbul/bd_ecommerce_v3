@@ -13,7 +13,8 @@ class FrontendController extends Controller
     public function index()
     {
         $sliders = Slider::where('status', '1')->get();
-        return view('frontend.index', compact('sliders'));
+        $trendingProduct = Product::where('trending', '1')->latest()->take(15)->orderBy('id', 'DESC')->get();
+        return view('frontend.index', compact('sliders', 'trendingProduct'));
     }
 
     public function categories()
@@ -47,6 +48,13 @@ class FrontendController extends Controller
             return redirect()->back()->with('message', 'Not Available!');
         }
     }
+
+    public function newArrivals()
+    {
+        $newArrivals = Product::where('status', '1')->latest()->take(15)->get();
+        return view('frontend.newArrival', compact('newArrivals'));
+    }
+
     public function thankYou()
     {
         return view('frontend.thankyou');

@@ -37,6 +37,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('public.index');
 Route::get('/collections', [FrontendController::class, 'categories'])->name('public.categories');
 Route::get('/collections/{category_slug}', [FrontendController::class, 'products'])->name('public.products');
 Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::class, 'product'])->name('public.product');
+Route::get('/new-arrivals', [FrontendController::class, 'newArrivals'])->name('public.newArrivals');
 
 Route::middleware('auth')->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('public.wishlist');

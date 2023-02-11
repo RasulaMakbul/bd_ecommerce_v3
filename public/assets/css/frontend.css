@@ -1,10 +1,19 @@
+.body {
+    margin: 0;
+    padding: 0;
+}
+.mainLayout {
+    margin-top: 1.5vh;
+}
 .carousel-item {
     height: 400px;
 }
 
 .carousel-item img {
     height: 100%;
+    opacity: 50%;
 }
+
 .carousel-item .custom-carousel-content {
     width: 50%;
     transform: translate(0%, -10%);
@@ -15,8 +24,8 @@
 .custom-carousel-content h5 {
     font-size: 40px;
     font-weight: 700;
-    color: #fbff00;
-    margin-bottom: 30px;
+    color: #333404;
+    margin: 30px 0 0 0;
 }
 .custom-carousel-content h5 span {
     color: #fbff00;
@@ -24,7 +33,7 @@
 .custom-carousel-content p {
     font-size: 18px;
     font-weight: 400;
-    color: #fff;
+    color: #352a2a;
     margin-bottom: 30px;
 }
 .custom-carousel-content .btn-slider {
@@ -41,7 +50,7 @@
     border-bottom: 1px solid #ccc;
 }
 .main-navbar .top-navbar {
-    background-color: #2874f0;
+    background-color: #1c1c1d;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -74,7 +83,6 @@
 }
 .main-navbar .navbar .nav-item .nav-link {
     padding: 8px 20px;
-    color: #000;
     font-size: 15px;
 }
 
@@ -291,7 +299,7 @@
 
 .colorSelectionLabel {
     color: #000;
-    padding: 20px 20px;
+    padding: 15px 15px;
     border: 1px solid #000;
     border-radius: 50%;
     font-size: 14px;
@@ -386,3 +394,74 @@
 }
 
 /* checkout */
+
+.underline {
+    height: 4px;
+    width: 100px;
+    background-color: #000;
+    margin: 10px 0px;
+}
+
+/* navbar */
+.navbarHeader {
+    border-bottom: 1px solid #5c5959;
+    background-color: #1c1c1d;
+}
+
+.navbarHeader-logo {
+    font-family: "Playfair Display", Georgia, "Times New Roman",
+        serif /*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+    font-size: 2.25rem;
+}
+
+.navbarHeader-logo:hover {
+    text-decoration: none;
+}
+
+.navbarHeader .nav-link {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Playfair Display", Georgia, "Times New Roman",
+        serif /*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+}
+
+.display-4 {
+    font-size: 2.5rem;
+}
+@media (min-width: 768px) {
+    .display-4 {
+        font-size: 3rem;
+    }
+}
+
+.flex-auto {
+    flex: 0 0 auto;
+}
+
+.h-250 {
+    height: 250px;
+}
+@media (min-width: 768px) {
+    .h-md-250 {
+        height: 250px;
+    }
+}
+
+.nav-scroller {
+    background: #838282;
+    margin-top: 3.2vh;
+    padding-top: 5px;
+}
+
+.nav-scroller .nav-link {
+    color: #ffffff;
+}
