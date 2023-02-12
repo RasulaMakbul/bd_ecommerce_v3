@@ -29,7 +29,7 @@
                         <th scope="col">{{__('Category')}}</th>
                         <th scope="col">{{__('code')}}</th>
                         <th scope="col">{{__('Slug')}}</th>
-                        <th scope="col">{{__('Color')}}</th>
+                        <th scope="col">{{__('Stock')}}</th>
                         <th scope="col">{{__('trending')}}</th>
                         <th scope="col">{{__('status')}}</th>
                         <th scope="col">{{__('Action')}}</th>
@@ -49,18 +49,18 @@
                         <td>{{$item->code}}</td>
                         <td>{{$item->slug}}</td>
                         <td>
+                            @if ($item->productColor)
                             <table>
-                                <thead>
-                                    <th scope="col">{{__('Name')}}</th>
-                                    <th scope="col">{{__('stock')}}</th>
-                                </thead>
                                 <tbody>
+
+
+
                                     @foreach($item->productColor as $color)
                                     <tr>
-                                        <td>{{$color->name}}</td>
+                                        <td>{{$color->color->name}} <strong>:</strong> </td>
                                         <td>
-                                            <div class="input-group mb-3" style="width:150px;">
-                                                <input type="text" value="{{$color->quantity}}" class="form-control form-control-sm">
+                                            <div class="input-group mb-1" style="width:50px;">
+                                                <input type="text" value="{{$color->stock}}" class="form-control form-control-sm">
                                             </div>
                                         </td>
                                     </tr>
@@ -68,6 +68,7 @@
 
                                 </tbody>
                             </table>
+                            @endif
                         </td>
 
                         <td>@if($item->trending==0)

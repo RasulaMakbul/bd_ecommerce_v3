@@ -106,5 +106,5 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     // Social
     Route::resource('/social', SocialController::class);
     Route::get('/social/inactive/{id}', [SocialController::class, 'inactive'])->name('social.inactive');
-    Route::get('/social/trending/{id}', [SocialController::class, 'trending'])->name('social.trending');
+    Route::get('/social/active/{id}', [SocialController::class, 'active'])->name('social.active');
 });
