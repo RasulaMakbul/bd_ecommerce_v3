@@ -1,10 +1,10 @@
 <header class="navbarHeader lh-1 py-3  ">
-    <div class="row flex-nowrap justify-content-between align-items-center fixed-top bg-dark py-2">
+    <div class="row flex-nowrap justify-content-between align-items-center fixed-top bg-dark p-2">
         <div class="col-4 pt-1 ">
             <form role="search">
                 <div class="input-group">
                     <input type="search" placeholder="Search your product" class="form-control bg-dark" />
-                    <button class="btn bg-dark" type="submit" style="color:aliceblue">
+                    <button class="btn btn-outlined-dark" type="submit" style="color:aliceblue">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
@@ -51,8 +51,8 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
                         <li><a class="dropdown-item" href="{{route('public.orderList')}}"><i class="fa fa-list"></i> My Orders</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-heart"></i> My Wishlist</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+                        <li><a class="dropdown-item" href="{{route('public.wishlist')}}"><i class="fa fa-heart"></i> My Wishlist</a></li>
+                        <li><a class="dropdown-item" href="{{route('public.cart')}}"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -87,5 +87,4 @@
         <a class="nav-link" href="{{route('public.newArrivals')}}">New Arrivals</a>
 
     </nav>
-</div>
 </div>

@@ -43,6 +43,12 @@
                     {{__(' Orders')}}
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('social.index')}}">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    {{__(' Social')}}
+                </a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="#">

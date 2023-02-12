@@ -16,6 +16,9 @@
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">{{__('Details')}}</button>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <button class="nav-link " id="apearance-tab" data-bs-toggle="tab" data-bs-target="#apearance-tab-pane" type="button" role="tab" aria-controls="apearance-tab-pane" aria-selected="false">{{__('Apearance')}}</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <button class="nav-link " id="pricing-tab" data-bs-toggle="tab" data-bs-target="#pricing-tab-pane" type="button" role="tab" aria-controls="pricing-tab-pane" aria-selected="false">{{__('Pricing')}}</button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -115,6 +118,20 @@
                             <label for="origin" class="form-label">{{__('Origin')}}</label>
                             <input type="text" class="form-control" id="origin" name="origin" value="{{old('origin',$product->origin)}}">
                             @error('origin') <small class="text-danger">{{$message}}</small> @enderror
+                        </div>
+
+                    </div>
+                    <!-- apearance -->
+
+                    <div class="tab-pane fade" id="apearance-tab-pane" role="tabpanel" aria-labelledby="apearance-tab" tabindex="0">
+
+                        <div class="form-group mb-3">
+                            <input type="checkbox" id="status" name="status" {{$product->status == '1' ? 'checked' : ''}}>
+                            <label class="form-label">{{__('Active')}}</label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="checkbox" id="trending" name="trending" {{$product->trending == '1' ? 'checked' : ''}}>
+                            <label class="form-label">{{__('Trending')}}</label>
                         </div>
 
                     </div>

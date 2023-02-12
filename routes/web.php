@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SocialController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -100,4 +101,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('/order/statusUpdate/{id}', [AdminOrderController::class, 'OrderStatusupdate'])->name('order.statusUpdate');
     Route::get('/order/invoice/{id}', [AdminOrderController::class, 'OrderInvoice'])->name('order.invoice');
     Route::get('order/invoice/generate/{id}', [AdminOrderController::class, 'OrderInvoiceGenerate'])->name('order.invoice.generate');
+
+
+    // Social
+    Route::resource('/social', SocialController::class);
+    Route::get('/social/inactive/{id}', [SocialController::class, 'inactive'])->name('social.inactive');
+    Route::get('/social/trending/{id}', [SocialController::class, 'trending'])->name('social.trending');
 });

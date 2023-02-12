@@ -140,6 +140,7 @@ class ProductController extends Controller
 
                 array_push($images, $image_path);
             }
+            $requestData = ['images' => $images];
         }
         $requestData = [
 
@@ -165,7 +166,7 @@ class ProductController extends Controller
             'costing' => $request->costing,
             'status' => $request->status == true ? '1' : '0',
             'trending' => $request->trending == true ? '1' : '0',
-            'images' => $images,
+
         ];
         // $category->product()->create($requestData);
         $product->update($requestData);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Category;
 use App\Models\Admin\Product;
 use App\Models\Admin\Slider;
+use App\Models\Admin\Social;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -13,8 +14,9 @@ class FrontendController extends Controller
     public function index()
     {
         $sliders = Slider::where('status', '1')->get();
+        $socials = Social::where('status', '1')->get();
         $trendingProduct = Product::where('trending', '1')->latest()->take(15)->orderBy('id', 'DESC')->get();
-        return view('frontend.index', compact('sliders', 'trendingProduct'));
+        return view('frontend.index', compact('sliders', 'trendingProduct', 'socials'));
     }
 
     public function categories()

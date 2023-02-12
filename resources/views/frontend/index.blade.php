@@ -78,7 +78,6 @@
                                         @if($item->productColor)
                                         @foreach($item->productColor as $colorItem)
                                         <div class="col-md-2">
-
                                             <label class="colorSelectionLabel" style="background-color: {{ $colorItem->color->code }};" wire:click="colorSelected({{$colorItem->id}})"></label>
                                         </div>
                                         @endforeach
@@ -97,6 +96,45 @@
                 </div>
             </div>
             @endif
+        </div>
+    </div>
+</div>
+<div class="py-3 pyt-md-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center shadow">
+                <div class="p-4 shadow bg-light">
+                    <h4>Social Wall</h4>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="underLine mb-4"></div>
+                        </div>
+                        @if ($socials)
+                        <div class="col-md-12">
+                            <div class="owl-carousel owl-theme trending-product">
+                                @forelse($socials as $item)
+                                <div class="item">
+                                    <div class="product-card ">
+                                        <div class="product-card-img">
+                                            <div class="caaroselTest">
+                                                <iframe src="{{$item->link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="product-card-body">
+                                            <h5 class="product-name">
+                                                {{$item->title}}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                @empty
+                                @endforelse
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
