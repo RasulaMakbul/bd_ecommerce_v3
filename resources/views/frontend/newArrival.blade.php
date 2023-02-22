@@ -14,7 +14,6 @@
             <div class="col-3">
                 <div class="product-card ">
                     <div class="product-card-img">
-                        <label class="stock bg-success">{{__('In Stock')}}</label>
                         <div class="caaroselTest">
                             <img src="{{ asset('/storage/' . $item->images[0]) }}" alt="image" class=" border border-blue-600" alt='{{$item->name}}'>
                         </div>
