@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-<div class="showPagetop" style="background-image: url({{asset('storage/category/'.$category->image)}});">
+<div class="showPagetop" style="background-image: url({{asset('storage/category/'.$category->image)}});opacity: 0.5;">
     <div class="showPageInner ">
         <h2>
             <span>{{$category->name}}</span>
@@ -29,30 +29,7 @@
             <livewire:frontend.product.index :products="$products" :category="$category" />
         </div>
     </div>
-    @push('scripts')
-    <script>
-        $(function() {
-
-            $("#exzoom").exzoom({
-
-                // thumbnail nav options
-                "navWidth": 70,
-                "navHeight": 70,
-                "navItemNum": 15,
-                // "navItemMargin": 2,
-                "navBorder": 1,
-
-                // autoplay
-                "autoPlay": false,
-
-                // autoplay interval in milliseconds
-                "autoPlayTimeout": 2000
-
-            });
-
-        });
-    </script>
-    @endpush
+</div>
 
 
-    @endsection
+@endsection

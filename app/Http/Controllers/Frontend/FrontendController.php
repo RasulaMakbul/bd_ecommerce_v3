@@ -39,9 +39,11 @@ class FrontendController extends Controller
     {
         $category = Category::where('slug', $category_slug)->first();
 
+
         if ($category) {
             $product = $category->product()->where('slug', $product_slug)->where('status', '1')->first();
             if ($product) {
+
                 return view('frontend.collections.products.view', compact('product', 'category'));
             } else {
                 return redirect()->back()->with('message', 'Not Available!');
@@ -60,5 +62,14 @@ class FrontendController extends Controller
     public function thankYou()
     {
         return view('frontend.thankyou');
+    }
+    public function searchProduct(Request $request)
+    {
+        if ($request->search) {
+            $searchProducts = Product::where('name', 'LIKE', '%' . $request->search . '%')->latest()->paginate(15);
+            return view('frontend.search', compact('searchProducts'));
+        } else {
+            return redirect()->back()->with('message', 'Search box empty');
+        }
     }
 }

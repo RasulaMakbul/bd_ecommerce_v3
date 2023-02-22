@@ -60,7 +60,7 @@
                                         <td>{{$color->color->name}} <strong>:</strong> </td>
                                         <td>
                                             <div class="input-group mb-1" style="width:50px;">
-                                                <input type="text" value="{{$color->stock}}" class="form-control form-control-sm">
+                                                <input type="text" value="{{$color->stock}}" class="form-control form-control-sm" disabled>
                                             </div>
                                         </td>
                                     </tr>
@@ -85,7 +85,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{route('product.show',$item->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
+                            <!-- <a href="#" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a> -->
                             <a href="{{route('product.edit',$item->id)}}" class=" btn btn-sm link-warning" comment="Edit subcategory"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
                             <form action="{{ route('product.destroy',$item->id) }}" method="post" style="display:inline">
                                 @csrf

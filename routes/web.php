@@ -7,13 +7,14 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocialController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,7 @@ Route::get('/collections', [FrontendController::class, 'categories'])->name('pub
 Route::get('/collections/{category_slug}', [FrontendController::class, 'products'])->name('public.products');
 Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::class, 'product'])->name('public.product');
 Route::get('/new-arrivals', [FrontendController::class, 'newArrivals'])->name('public.newArrivals');
+Route::get('/frontend/search', [FrontendController::class, 'searchProduct'])->name('frontend.search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('public.wishlist');
@@ -47,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/order', [OrderController::class, 'index'])->name('public.orderList');
     Route::get('/order/{orderId}', [OrderController::class, 'show'])->name('public.show');
+    Route::post('/products/{product}/comments', [CommentController::class, 'store'])->name('comment.store');
 });
 Route::get('thank-you', [FrontendController::class, 'thankYou']);
 
@@ -54,6 +57,10 @@ Route::get('thank-you', [FrontendController::class, 'thankYou']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'categories']);
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
+
+    // User Controller
+    Route::get('/users', [AdminUserController::class, 'index'])->name('users');
+    Route::get('/users/{$id}', [AdminUserController::class, 'show'])->name('users.show');
 
     // dashboard
 

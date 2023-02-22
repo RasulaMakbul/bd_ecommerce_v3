@@ -13,12 +13,12 @@
                     {{__(' Categories')}}
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="{{route('brand.index')}}">
                     <i class="fa-regular fa-copyright"></i>
                     {{__('Brand')}}
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('product.index')}}">
                     <i class="fa-solid fa-list"></i>
@@ -51,9 +51,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="layers" class="align-text-bottom"></span>
-                    Integrations
+                <a class="nav-link" href="{{route('users')}}">
+                    <i class="fa-solid fa-user-gear"></i>
+                    {{__(' Users')}}
                 </a>
             </li>
         </ul>

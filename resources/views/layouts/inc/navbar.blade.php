@@ -1,9 +1,9 @@
 <header class="navbarHeader lh-1 py-3  ">
     <div class="row flex-nowrap justify-content-between align-items-center fixed-top bg-dark p-2">
         <div class="col-4 pt-1 ">
-            <form role="search">
+            <form action="{{route('frontend.search')}}" method="get" role="search">
                 <div class="input-group">
-                    <input type="search" placeholder="Search your product" class="form-control bg-dark" />
+                    <input type="search" name="search" value="{{Request::get('search')}}" placeholder="Search your product" class="form-control " />
                     <button class="btn btn-outlined-dark" type="submit" style="color:aliceblue">
                         <i class="fa fa-search"></i>
                     </button>

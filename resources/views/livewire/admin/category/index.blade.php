@@ -45,7 +45,6 @@
                     <th scope="col">{{__('Image')}}</th>
                     <th scope="col">{{__('Category')}}</th>
                     <th scope="col">{{__('Slug')}}</th>
-                    <th scope="col">{{__('Colors')}}</th>
                     <th scope="col">{{__('status')}}</th>
                     <th scope="col">{{__('Action')}}</th>
                 </tr>
